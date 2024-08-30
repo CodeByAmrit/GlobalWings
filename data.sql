@@ -9,7 +9,8 @@ INSERT INTO Country (name) VALUES
 ('Germany'),
 ('Japan'),
 ('South Korea'),
-('Brazil');
+('Brazil')
+ON DUPLICATE KEY UPDATE name=name;
 
 -- Insert data into the Type table
 INSERT INTO Type (name) VALUES
@@ -17,7 +18,8 @@ INSERT INTO Type (name) VALUES
 ('Transport'),
 ('Bomber'),
 ('Reconnaissance'),
-('Trainer');
+('Trainer')
+ON DUPLICATE KEY UPDATE name=name;;
 
 -- Insert data into the Aircraft table
 INSERT INTO Aircraft (name, model, country_id, type_id) VALUES
