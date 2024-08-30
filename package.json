@@ -1,18 +1,19 @@
 {
+  "name": "globalwings",
+  "version": "1.0.0",
+  "description": "A web application for managing and displaying aircraft information.",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
   "dependencies": {
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
-    "mysql2": "^3.11.0",
+    "mysql2": "^3.11.0"
+  },
+  "devDependencies": {
     "nodemon": "^3.1.4"
   },
-  "name": "mrs-g",
-  "version": "1.0.0",
-  "main": "app.js",
-  "devDependencies": {},
-  "scripts": {
-    "start": "nodemon app"
-  },
-  "author": "",
-  "license": "ISC",
-  "description": ""
+  "author": "Amrit",
+  "license": "ISC"
 }

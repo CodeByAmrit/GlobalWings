@@ -47,7 +47,7 @@ const Aircraft = {
     }
 
     const [rows] = await connection.execute(query, queryParams);
-    await connection.end(); // Close connection after use
+    await connection.release(); // Close connection after use
     return rows;
   },
 };
