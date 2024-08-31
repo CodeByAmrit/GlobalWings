@@ -4,63 +4,109 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3D Model Viewer</title>
+    <title>Global Wings Viewer</title>
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-            overflow-y: hidden;
+            overflow-x: hidden;
             font-family: calibri;
         }
 
         .customDarkBg {
             background-color: #0f1c23 !important;
         }
+
         .customDarkBgLight {
-            background: radial-gradient(#24323a, #0f1c23 ) !important;
-        }
-        .TopMarginMinux {
-            margin-top: -40px !important;
+            background: radial-gradient(#24323a, #0f1c23) !important;
         }
 
         .heightFive {
             height: 60vh;
         }
-        .transparent{
+
+        .transparent {
             background: transparent !important;
+            border: 0 !important;
         }
+
+        .navbar-toggler-icon {
+            filter: invert(1);
+            /* Inverts the color, making it white */
+        }
+        .scaleUp{
+            scale: 1.2;
+        }
+        @media only screen and (max-width: 600px) {
+            
+        .heightFive {
+            height: 40vh;
+        }
+          }
     </style>
 </head>
 
 
 <body class="bg-dark text-white customDarkBgLight">
-    <nav class="navbar transparent bg-light px-5">
-        <a class="navbar-brand z-3" href="#">
-            <img src="/logos/gw_logo.svg" width="120" height="120" alt="GlobalWings">
-        </a>
+    <nav class="navbar navbar-expand-sm bg-body-tertiary transparent px-sm-5">
+        <div class="container-fluid">
 
-        <div class="flex">
-            <p class="text-center fs-2 m-0 p-0 fw-bold">HAL Tejas</p>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <div>
+                    <a class="navbar-brand z-3" href="#">
+                        <img src="/logos/gw_logo.svg" width="120px" height="120px" alt="GlobalWings">
+                    </a>
+                </div>
+                <div class="d-flex w-100 justify-content-center">
+                    <ul class="navbar-nav mb-2 mb-lg-0 text-white">
+                        <li class="nav-item px-3">
+                            <a class="nav-link active text-light" aria-current="page" href="#">Home</a>
+                        </li>
+                        <li class="nav-item px-3">
+                            <a class="nav-link text-light" href="#">Link</a>
+                        </li>
+                        <li class="nav-item px-3 dropdown text-light">
+                            <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Dropdown
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="d-flex">
+                <button class="btn btn-outline-primary mx-3">Signup</button>
+                <button class="btn btn-primary">Login</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="containter">
+        <div class="flex scaleUp mt-3">
+            <p class="text-center fs-1 m-0 p-0 fw-bold">HAL Tejas</p>
             <p class="text-center fs-5 m-0 p-0">Mark 1</p>
 
         </div>
-
-        <div style=" width: 160px;" class="btn-group">
-            <button type="button" class="btn btn-primary dropdown-toggle " style="width: fit-content !important;" data-bs-toggle="dropdown" aria-expanded="false">
-                IN
-              </button>
-              <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="#">Menu item</a></li>
-                <li><a class="dropdown-item" href="#">Menu item</a></li>
-                <li><a class="dropdown-item" href="#">Menu item</a></li>
-              </ul>
-        </div>
-    </nav>
+    </div>
 
     <div class="container transparent TopMarginMinux">
         <div class="card  border-0 bg-dark text-white transparent">
             <div class="card-body">
                 <model-viewer src="/models/hal_tejas.glb" alt="3D model of an aircraft" auto-rotate
-                    camera-orbit="90deg 75deg auto" poster="poster.png" shadow-intensity="3" ar
+                    camera-orbit="30deg 75deg auto" poster="poster.png" shadow-intensity="1.5" ar
                     ar-modes="webxr scene-viewer quick-look" camera-target="0m 1m 3m" field-of-view="70deg"
                     class="w-100 heightFive">
                 </model-viewer>
@@ -68,27 +114,27 @@
         </div>
     </div>
 
-    <div class="container">
-        <div class="card-group g-1">
+    <div class="container d-flex justify-content-center align-items-center TopMarginMinux">
+        <div class="card-group g-1 w-50">
             <div class="card text-bg-dark mb-3 transparent">
-                <p class="text-center fs-4 m-0 p-0 fw-bold">Fighter</p>
-                <p class="text-center fs-5 m-0 p-0">Type</p>
+                <p class="text-center fs-4 m-0 p-0 text-info fw-bold">Fighter</p>
+                <p class="text-center fs-6 m-0 p-0 ">Type</p>
             </div>
             <div class="card text-bg-dark mb-3 transparent">
-                <p class="text-center fs-4 m-0 p-0 fw-bold">2205</p>
-                <p class="text-center fs-5 m-0 p-0">Speed</p>
+                <p class="text-center fs-4 m-0 p-0 text-info fw-bold">2205</p>
+                <p class="text-center fs-7 m-0 p-0 ">Speed</p>
             </div>
             <div class="card text-bg-dark mb-3 transparent">
-                <p class="text-center fs-4 m-0 p-0 fw-bold">1850</p>
-                <p class="text-center fs-5 m-0 p-0">Range</p>
+                <p class="text-center fs-4 m-0 p-0 text-info fw-bold">1850</p>
+                <p class="text-center fs-7 m-0 p-0 ">Range</p>
             </div>
             <div class="card text-bg-dark mb-3 transparent">
-                <p class="text-center fs-4 m-0 p-0 fw-bold">2458</p>
-                <p class="text-center fs-5 m-0 p-0">Fuel</p>
+                <p class="text-center fs-4 m-0 p-0 text-info fw-bold">2458</p>
+                <p class="text-center fs-7 m-0 p-0 ">Fuel</p>
             </div>
             <div class="card text-bg-dark mb-3 transparent">
-                <p class="text-center fs-4 m-0 p-0 fw-bold">6500</p>
-                <p class="text-center fs-5 m-0 p-0">Weight</p>
+                <p class="text-center fs-4 m-0 p-0 text-info fw-bold">6500</p>
+                <p class="text-center fs-7 m-0 p-0  ">Weight</p>
             </div>
         </div>
     </div>
