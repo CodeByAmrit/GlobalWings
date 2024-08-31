@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Model Viewer</title>
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            overflow-y: hidden;
+            font-family: calibri;
+        }
+
+        .customDarkBg {
+            background-color: #0f1c23 !important;
+        }
+        .customDarkBgLight {
+            background: radial-gradient(#24323a, #0f1c23 ) !important;
+        }
+        .TopMarginMinux {
+            margin-top: -40px !important;
+        }
+
+        .heightFive {
+            height: 60vh;
+        }
+        .transparent{
+            background: transparent !important;
+        }
+    </style>
+</head>
+
+
+<body class="bg-dark text-white customDarkBgLight">
+    <nav class="navbar transparent bg-light px-5">
+        <a class="navbar-brand z-3" href="#">
+            <img src="/logos/gw_logo.svg" width="120" height="120" alt="GlobalWings">
+        </a>
+
+        <div class="flex">
+            <p class="text-center fs-2 m-0 p-0 fw-bold">HAL Tejas</p>
+            <p class="text-center fs-5 m-0 p-0">Mark 1</p>
+
+        </div>
+
+        <div style=" width: 160px;" class="btn-group">
+            <button type="button" class="btn btn-primary dropdown-toggle " style="width: fit-content !important;" data-bs-toggle="dropdown" aria-expanded="false">
+                IN
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="#">Menu item</a></li>
+                <li><a class="dropdown-item" href="#">Menu item</a></li>
+                <li><a class="dropdown-item" href="#">Menu item</a></li>
+              </ul>
+        </div>
+    </nav>
+
+    <div class="container transparent TopMarginMinux">
+        <div class="card  border-0 bg-dark text-white transparent">
+            <div class="card-body">
+                <model-viewer src="/models/hal_tejas.glb" alt="3D model of an aircraft" auto-rotate
+                    camera-orbit="90deg 75deg auto" poster="poster.png" shadow-intensity="3" ar
+                    ar-modes="webxr scene-viewer quick-look" camera-target="0m 1m 3m" field-of-view="70deg"
+                    class="w-100 heightFive">
+                </model-viewer>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="card-group g-1">
+            <div class="card text-bg-dark mb-3 transparent">
+                <p class="text-center fs-4 m-0 p-0 fw-bold">Fighter</p>
+                <p class="text-center fs-5 m-0 p-0">Type</p>
+            </div>
+            <div class="card text-bg-dark mb-3 transparent">
+                <p class="text-center fs-4 m-0 p-0 fw-bold">2205</p>
+                <p class="text-center fs-5 m-0 p-0">Speed</p>
+            </div>
+            <div class="card text-bg-dark mb-3 transparent">
+                <p class="text-center fs-4 m-0 p-0 fw-bold">1850</p>
+                <p class="text-center fs-5 m-0 p-0">Range</p>
+            </div>
+            <div class="card text-bg-dark mb-3 transparent">
+                <p class="text-center fs-4 m-0 p-0 fw-bold">2458</p>
+                <p class="text-center fs-5 m-0 p-0">Fuel</p>
+            </div>
+            <div class="card text-bg-dark mb-3 transparent">
+                <p class="text-center fs-4 m-0 p-0 fw-bold">6500</p>
+                <p class="text-center fs-5 m-0 p-0">Weight</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="/js/model-viewer.min.js"></script>
+</body>
+
+</html>
