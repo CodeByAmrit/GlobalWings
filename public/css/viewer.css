@@ -1,0 +1,37 @@
+body {
+    overflow-x: hidden;
+    font-family: calibri;
+}
+
+.customDarkBg {
+    background-color: #0f1c23 !important;
+}
+
+.customDarkBgLight {
+    background: radial-gradient(#24323a, #0f1c23) !important;
+}
+
+.heightFive {
+    height: 60vh;
+}
+
+.transparent {
+    background: transparent !important;
+    border: 0 !important;
+}
+
+.navbar-toggler-icon {
+    filter: invert(1);
+    /* Inverts the color, making it white */
+}
+
+.scaleUp {
+    scale: 1.2;
+}
+
+@media only screen and (max-width: 600px) {
+
+    .heightFive {
+        height: 40vh;
+    }
+}

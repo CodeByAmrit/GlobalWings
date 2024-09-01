@@ -7,43 +7,7 @@
     <title>Global Wings Viewer</title>
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="logos/favicon.ico">
-    <style>
-        body {
-            overflow-x: hidden;
-            font-family: calibri;
-        }
-
-        .customDarkBg {
-            background-color: #0f1c23 !important;
-        }
-
-        .customDarkBgLight {
-            background: radial-gradient(#24323a, #0f1c23) !important;
-        }
-
-        .heightFive {
-            height: 60vh;
-        }
-
-        .transparent {
-            background: transparent !important;
-            border: 0 !important;
-        }
-
-        .navbar-toggler-icon {
-            filter: invert(1);
-            /* Inverts the color, making it white */
-        }
-        .scaleUp{
-            scale: 1.2;
-        }
-        @media only screen and (max-width: 600px) {
-            
-        .heightFive {
-            height: 40vh;
-        }
-          }
-    </style>
+    <link rel="stylesheet" href="css/viewer.css">
 </head>
 
 
@@ -103,7 +67,7 @@
         </div>
     </div>
 
-    <div class="container transparent TopMarginMinux">
+    <div class="w-100 transparent TopMarginMinux">
         <div class="card  border-0 bg-dark text-white transparent">
             <div class="card-body">
                 <model-viewer src="/models/hal_tejas.glb" alt="3D model of an aircraft" auto-rotate
