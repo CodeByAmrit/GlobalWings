@@ -10,7 +10,7 @@ router.get('/aircraft', aircraftController.getAllAircraft);
 router.get('/aircraft/:id', aircraftController.getAircraftById);
 
 // Handle POST request to add new aircraft
-router.post('/api/aircraft', addNewAirCraft);
+router.post('/aircraft', addNewAirCraft);
 
 
 module.exports = router;

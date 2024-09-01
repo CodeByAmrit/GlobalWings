@@ -4,5 +4,12 @@
 }
 .card-hover:hover{
     scale: 1.05;
-    background-color: rgb(219, 239, 255) !important;
+    background-color: #0f1c23 !important;
+}
+
+.customDarkBgLight {
+    background: radial-gradient(#24323a, #0f1c23) !important;
+}
+.opa50{
+    background-color: #0f1c2370;
 }

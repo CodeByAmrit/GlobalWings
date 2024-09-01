@@ -7,7 +7,7 @@ const aircraftRoutes = require('./routes/aircraftRoutes');
 const pagesRoutes = require('./routes/pagesRoutes');
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 4000;
 
 app.disable('x-powered-by');
 
@@ -31,6 +31,8 @@ app.use(morgan('combined'));  // Enable this if needed
 
 // Middleware: Parse JSON payloads
 app.use(express.json());
+// middleware: parse post form data
+app.use(express.urlencoded({ extended: false }));
 
 // Serve static files from the public directory
 app.use(express.static(path.join(__dirname, 'public')));

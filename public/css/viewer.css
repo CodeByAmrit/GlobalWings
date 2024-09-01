@@ -12,7 +12,7 @@ body {
 }
 
 .heightFive {
-    height: 60vh;
+    height: 55vh;
 }
 
 .transparent {
@@ -29,8 +29,23 @@ body {
     scale: 1.2;
 }
 
+.minusTopMargin80{
+    margin-top: -80px;
+}
+
+.custom_positon{
+    top:180px;
+}
+.custom_positon2{
+    top:180px;
+    right: 0;
+}
+
 @media only screen and (max-width: 600px) {
 
+    .minusTopMargin80{
+        margin-top: -20px;
+    }
     .heightFive {
         height: 40vh;
     }

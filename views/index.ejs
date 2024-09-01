@@ -7,9 +7,10 @@
     <title>GlobalWings - Aircraft Database</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/scroll.css">
 </head>
 
-<body>
+<body class="bg-dark text-white customDarkBgLight">
     <div class="container">
         
     </div>
@@ -28,7 +29,7 @@
         <div class="row" id="aircraftCards">
             <% aircraft.forEach(aircraft=> { %>
                 <div class="col-md-4 mb-4">
-                    <div class="card card-hover" >
+                    <div class="card card-hover text-white opa50" >
                         
                         <div class="card-body">
                             <h5 class="card-title"><%= aircraft.aircraft_name %></h5>

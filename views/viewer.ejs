@@ -33,8 +33,8 @@
                             <a class="nav-link text-light" href="#">Link</a>
                         </li>
                         <li class="nav-item px-3 dropdown text-light">
-                            <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">
+                            <a class="nav-link dropdown-toggle text-light" href="#" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
                                 Dropdown
                             </a>
                             <ul class="dropdown-menu">
@@ -59,8 +59,12 @@
 
     <div class="container">
         <div class="flex scaleUp mt-3">
-            <p class="text-center fs-1 m-0 p-0 fw-bold"><%= aircraft.name || 'Unknown Name' %></p>
-            <p class="text-center fs-5 m-0 p-0"><%= aircraft.model || 'Unknown Model' %></p>
+            <p class="text-center fs-1 m-0 p-0 fw-bold">
+                <%= aircraft.name || 'Unknown Name' %>
+            </p>
+            <p class="text-center fs-5 m-0 p-0">
+                <%= aircraft.model || 'Unknown Model' %>
+            </p>
         </div>
     </div>
 
@@ -69,36 +73,92 @@
             <div class="card-body">
                 <!-- Change Model with Dynamic EJS -->
                 <model-viewer src="/models/hal_tejas.glb" alt="3D model of an aircraft" auto-rotate
-                    camera-orbit="30deg 75deg auto" shadow-intensity="1.5" ar
-                    ar-modes="webxr scene-viewer quick-look" camera-target="0m 1m 3m" field-of-view="70deg"
-                    class="w-100 heightFive">
+                    camera-orbit="40deg 75deg auto" shadow-intensity="1.5" ar ar-modes="webxr scene-viewer quick-look"
+                    camera-target="0m 1m 3m" field-of-view="70deg" class="w-100 heightFive">
                 </model-viewer>
             </div>
         </div>
     </div>
 
-    <div class="container d-flex justify-content-center align-items-center TopMarginMinux">
-        <div class="card-group g-1 w-50">
-            <div class="card text-bg-dark mb-3 transparent">
-                <p class="text-center fs-4 m-0 p-0 text-info fw-bold"><%= aircraft.type || 'Unknown Type' %></p>
-                <p class="text-center fs-6 m-0 p-0">Type</p>
+    <div class="container d-flex  justify-content-center align-items-center TopMarginMinux minusTopMargin80">
+        <div class="d-flex flex-wrap justify-content-center d-lg-none">
+            <div class="card text-bg-dark mb-3 px-2 mx-1 transparent">
+                <p class="fs-6 m-0 p-0">Type</p>
+                <p class="fs-2 m-0 p-0 text-info fw-bold">
+                    <%= aircraft.type || 'Unknown Type' %>
+                </p>
             </div>
-            <div class="card text-bg-dark mb-3 transparent">
-                <p class="text-center fs-4 m-0 p-0 text-info fw-bold"><%= aircraft.speed ? aircraft.speed + ' km/h' : 'Unknown Speed' %></p>
-                <p class="text-center fs-7 m-0 p-0">Speed</p>
+            <div class="card text-bg-dark mb-3 px-2 mx-3 transparent">
+                <p class="fs-7 m-0 p-0">Speed</p>
+                <p class="fs-2 m-0 p-0 text-info fw-bold ">
+                    <%= aircraft.speed ? aircraft.speed : 'Unknown Speed' %><span class='fs-6'> km/h</span>
+                </p>
             </div>
-            <div class="card text-bg-dark mb-3 transparent">
-                <p class="text-center fs-4 m-0 p-0 text-info fw-bold"><%= aircraft._range ? aircraft._range + ' km' : 'Unknown Range' %></p>
-                <p class="text-center fs-7 m-0 p-0">Range</p>
+            <div class="card text-bg-dark mb-3 px-2 mx-3 transparent">
+                <p class="fs-7 m-0 p-0">Range</p>
+                <p class="fs-2 m-0 p-0 text-info fw-bold">
+                    <%= aircraft._range ? aircraft._range : 'Unknown Range' %><span class='fs-6'> Km</span>
+                </p>
             </div>
-            <div class="card text-bg-dark mb-3 transparent">
-                <p class="text-center fs-4 m-0 p-0 text-info fw-bold"><%= aircraft.fuel_capacity ? aircraft.fuel_capacity + ' liters' : 'Unknown Fuel Capacity' %></p>
-                <p class="text-center fs-7 m-0 p-0">Fuel Capacity</p>
+            <div class="card text-bg-dark mb-3 px-2 mx-3 transparent">
+                <p class="fs-7 m-0 p-0">Fuel Capacity</p>
+                <p class="fs-2 m-0 p-0 text-info fw-bold">
+                    <%= aircraft.fuel_capacity ? aircraft.fuel_capacity : 'Unknown Fuel Capacity' %><span class='fs-6'>
+                            L</span>
+                </p>
             </div>
-            <div class="card text-bg-dark mb-3 transparent">
-                <p class="text-center fs-4 m-0 p-0 text-info fw-bold"><%= aircraft.weight ? aircraft.weight + ' kg' : 'Unknown Weight' %></p>
-                <p class="text-center fs-7 m-0 p-0">Weight</p>
+            <div class="card text-bg-dark mb-3 px-2 mx-3 transparent">
+                <p class="fs-7 m-0 p-0">Weight</p>
+                <p class="fs-2 m-0 p-0 text-info fw-bold">
+                    <%= aircraft.weight ? aircraft.weight : 'Unknown Weight' %><span class='fs-6'> Kg</span>
+                </p>
             </div>
+        </div>
+
+        <!-- for lage screen card -->
+        <div class="card-group fixed-top top-20 d-none d-lg-block  mx-5 custom_positon" style="width: 13rem;">
+            <div class="card text-bg-dark mb-3 px-2 mx-3 transparent">
+                <p class="fs-6 m-0 p-0">Type</p>
+                <p class="fs-2 m-0 p-0 text-info fw-bold">&ensp;
+                    <%= aircraft.type || 'Unknown Type' %>
+                </p>
+            </div>
+            <div class="card text-bg-dark mb-3 px-2 mx-3 transparent">
+                <p class="fs-7 m-0 p-0">Speed</p>
+                <p class="fs-2 m-0 p-0 text-info fw-bold ">&ensp;
+                    <%= aircraft.speed ? aircraft.speed : 'Unknown Speed' %><span class='fs-6'> km/h</span>
+                </p>
+            </div>
+            <div class="card text-bg-dark mb-3 px-2 mx-3 transparent">
+                <p class="fs-7 m-0 p-0">Range</p>
+                <p class="fs-2 m-0 p-0 text-info fw-bold">&ensp;
+                    <%= aircraft._range ? aircraft._range : 'Unknown Range' %><span class='fs-6'> Km</span>
+                </p>
+            </div>
+            <div class="card text-bg-dark mb-3 px-2 mx-3 transparent">
+                <p class="fs-7 m-0 p-0">Fuel Capacity</p>
+                <p class="fs-2 m-0 p-0 text-info fw-bold">&ensp;
+                    <%= aircraft.fuel_capacity ? aircraft.fuel_capacity : 'Unknown Fuel Capacity' %><span class='fs-6'>
+                            L</span>
+                </p>
+            </div>
+            <div class="card text-bg-dark mb-3 px-2 mx-3 transparent">
+                <p class="fs-7 m-0 p-0">Weight</p>
+                <p class="fs-2 m-0 p-0 text-info fw-bold">&ensp;
+                    <%= aircraft.weight ? aircraft.weight : 'Unknown Weight' %><span class='fs-6'> Kg</span>
+                </p>
+            </div>
+        </div>
+
+        <!-- RIGHT DIV FOR Missons shows -->
+        <div class="card-group position-fixed d-none d-lg-block  mx-5 custom_positon2" style="width: 13rem;">
+            <div class="card text-white bg-dark border-light mb-3" style="max-width: 18rem;">
+                <div class="card-header">Header</div>
+                <div class="card-body">
+                  <h5 class="card-title">Light card title</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+              </div>
         </div>
     </div>
 
