@@ -34,3 +34,25 @@ CREATE TABLE IF NOT EXISTS Specifications (
     weight FLOAT,
     FOREIGN KEY (aircraft_id) REFERENCES Aircraft(id)
 );
+-- Create the view to get all details of aircraft with specifications
+CREATE VIEW AircraftDetails AS
+SELECT 
+    a.id AS aircraft_id,
+    a.name AS aircraft_name,
+    a.model AS aircraft_model,
+    c.name AS country_name,
+    t.name AS type_name,
+    s.speed AS aircraft_speed,
+    s._range AS aircraft_range,
+    s.fuel_capacity AS aircraft_fuel_capacity,
+    s.weight AS aircraft_weight
+FROM 
+    Aircraft a
+JOIN 
+    Country c ON a.country_id = c.id
+JOIN 
+    Type t ON a.type_id = t.id
+LEFT JOIN 
+    Specifications s ON a.id = s.aircraft_id;
+
+select * from `AircraftDetails`;

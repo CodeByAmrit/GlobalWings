@@ -5,13 +5,13 @@ const morgan = require('morgan');
 const favicon = require('serve-favicon');
 const aircraftRoutes = require('./routes/aircraftRoutes');
 const pagesRoutes = require('./routes/pagesRoutes');
+
 const app = express();
 const port = process.env.PORT || 3000;
 
 app.disable('x-powered-by');
 
 // Middleware: Set security headers using helmet
-app.use(helmet());
 app.use(helmet({
     contentSecurityPolicy: {
         directives: {
@@ -27,7 +27,7 @@ app.use(helmet({
 app.set('view engine', 'ejs');
 
 // Middleware: Logging HTTP requests
-app.use(morgan('combined'));
+app.use(morgan('combined'));  // Enable this if needed
 
 // Middleware: Parse JSON payloads
 app.use(express.json());
@@ -40,8 +40,6 @@ app.use(favicon(path.join(__dirname, 'public', 'logos', 'favicon.ico')));
 
 // Routes
 app.use('/api', aircraftRoutes);
-
-// Routes pages
 app.use('/', pagesRoutes);
 
 // Error handling middleware

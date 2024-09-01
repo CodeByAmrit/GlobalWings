@@ -1,0 +1,8 @@
+
+.card-hover{
+    cursor: pointer;
+}
+.card-hover:hover{
+    scale: 1.05;
+    background-color: rgb(219, 239, 255) !important;
+}
