@@ -50,6 +50,18 @@ app.use((err, req, res, next) => {
     res.status(500).json({ error: 'Internal Server Error' });
 });
 
+app.get('/logs', (req, res) => {
+    // Access the log stream from morgan
+    const logStream = morgan.token('combined', (req, res) => {
+        // Format the log message as desired
+        return `${req.method} ${req.url} - ${res.statusCode} - ${req.headers['user-agent']}`;
+    })(req, res, () => {});
+
+    // Create a response stream and pipe the log stream to it
+    const responseStream = res.writeHead(200, { 'Content-Type': 'text/plain' });
+    logStream.pipe(responseStream);
+});
+
 // Start the server
 app.listen(port, (err) => {
     if (err) {

@@ -27,15 +27,15 @@
                 <div class="d-flex w-100 justify-content-center">
                     <ul class="navbar-nav mb-2 mb-lg-0 text-white">
                         <li class="nav-item px-3">
-                            <a class="nav-link active text-light" aria-current="page" href="#">Home</a>
+                            <a class="nav-link active text-light" aria-current="page" href="/">Home</a>
                         </li>
                         <li class="nav-item px-3">
-                            <a class="nav-link text-light" href="#">Link</a>
+                            <a class="nav-link text-light" href="model">Aircrafts</a>
                         </li>
                         <li class="nav-item px-3 dropdown text-light">
                             <a class="nav-link dropdown-toggle text-light" href="#" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
-                                Dropdown
+                                More
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="#">Action</a></li>
@@ -72,9 +72,9 @@
         <div class="card border-0 bg-dark text-white transparent">
             <div class="card-body">
                 <!-- Change Model with Dynamic EJS -->
-                <model-viewer src="/models/hal_tejas.glb" alt="3D model of an aircraft" auto-rotate
+                <model-viewer src="/models/<%= aircraft.id || 'hal_tejas' %>.glb" alt="3D model of an aircraft" auto-rotate
                     camera-orbit="40deg 75deg auto" shadow-intensity="1.5" ar ar-modes="webxr scene-viewer quick-look"
-                    camera-target="0m 1m 3m" field-of-view="70deg" class="w-100 heightFive">
+                    camera-target="0m 1m 3m" field-of-view="70deg" camera-controls touch-action="pan-y" class="w-100 heightFive">
                 </model-viewer>
             </div>
         </div>
