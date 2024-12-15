@@ -1,8 +1,8 @@
-
-.card-hover{
+.card-hover {
     cursor: pointer;
 }
-.card-hover:hover{
+
+.card-hover:hover {
     scale: 1.05;
     background-color: #0f1c23 !important;
 }
@@ -10,6 +10,49 @@
 .customDarkBgLight {
     background: radial-gradient(#24323a, #0f1c23) !important;
 }
-.opa50{
+
+.opa50 {
     background-color: #0f1c2370;
+}
+
+.height100 {
+    height: 100vh;
+}
+
+.positionSet {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.fontlarge {
+
+    font-size: 150px;
+    transition: all 2s ease-in-out;
+    /* Smooth transition */
+    z-index: 10;
+}
+
+/* Transition effect */
+.transition-text {
+    animation: moveAndShrink 3s ease-in-out forwards;
+    animation-delay: 4s;
+}
+
+/* Keyframes for moving and shrinking */
+@keyframes moveAndShrink {
+    0% {
+        font-size: 150px;
+        top: 10%;
+        transform: translateY(0);
+    }
+
+    100% {
+        font-size: 80px;
+        /* Smaller size */
+        top: -50%;
+        /* Move upward */
+        transform: translateY(-130%);
+    }
 }

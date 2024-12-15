@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+    <link rel="stylesheet" href="/css/test.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Results for "<%= query %>"</h1>
+        <div class="models">
+            <% models.forEach(model=> { %>
+                <div class="model">
+                    <h3>
+                        <%= model.name %>
+                    </h3>
+                    <iframe src="https://sketchfab.com/models/<%= model.uid %>/embed" frameborder="0" allowfullscreen
+                        allow="autoplay; fullscreen; xr-spatial-tracking">
+                    </iframe>
+                </div>
+                <% }) %>
+        </div>
+        <a href="/">Search Again</a>
+    </div>
+</body>
+
+</html>

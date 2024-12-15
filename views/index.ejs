@@ -11,11 +11,27 @@
 </head>
 
 <body class="bg-dark text-white customDarkBgLight">
-    <div class="container">
-        
+    <div class="container height100">
+
+        <div class="card-body position-relative">
+            <div class="flex scaleUp mt-3 positionSet">
+                <!-- <a class="navbar-brand z-3" href="/">
+                    <img src="/logos/gw_logo.svg" width="120px" height="120px" alt="GlobalWings">
+                </a> -->
+                <p class="text-center m-0 p-0 fw-bold fontlarge transition-text">
+                    Global&nbsp;Wings
+                </p>
+
+            </div>
+            <!-- Change Model with Dynamic EJS -->
+            <model-viewer src="/models/2.glb" alt="3D model of an aircraft" auto-rotate camera-orbit="90deg 90deg auto"
+                shadow-intensity="1.5" ar ar-modes="webxr scene-viewer quick-look" camera-target="20m 20m 0m"
+                field-of-view="70deg" touch-action="pan-y" class="w-100 height100">
+            </model-viewer>
+        </div>
     </div>
     <div class="container mt-5">
-        <h1 class="text-center mb-4">GlobalWings Aircraft Database</h1>
+        <h1 class="text-center mb-4">GlobalWings Aircraft</h1>
 
         <!-- Search Form -->
         <form id="searchForm" class="d-flex mb-4">
@@ -29,14 +45,18 @@
         <div class="row" id="aircraftCards">
             <% aircraft.forEach(aircraft=> { %>
                 <div class="col-md-4 mb-4">
-                    <div class="card card-hover text-white opa50" >
-                        
+                    <div class="card card-hover text-white opa50">
+
                         <div class="card-body">
-                            <h5 class="card-title"><%= aircraft.aircraft_name %></h5>
-                            <p class="card-text">Model: <%= aircraft.aircraft_model %></p>
-                            <p class="card-text">Type: <%= aircraft.type_name %></p>
+                            <h5 class="card-title">
+                                <%= aircraft.aircraft_name %>
+                            </h5>
+                            <p class="card-text">Model: <%= aircraft.aircraft_model %>
+                            </p>
+                            <p class="card-text">Type: <%= aircraft.type_name %>
+                            </p>
                             <a href="/viewer/<%= aircraft.aircraft_id %>" class="btn btn-primary">Open</a>
-                          </div>
+                        </div>
                     </div>
                 </div>
                 <% }); %>
@@ -46,6 +66,7 @@
 
     <script src="js/index.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="/js/model-viewer.min.js"></script>
 </body>
 
 </html>

@@ -14,3 +14,16 @@ document.getElementById('searchForm').addEventListener('submit', function (event
         }
     });
 });
+
+// AUDIO PLAY
+window.addEventListener('DOMContentLoaded', () => {
+    const audio = new Audio('/sound/ENTRY.mp3');
+    const playAudio = () => {
+        audio.play().catch(error => {
+            console.error('Playback failed:', error);
+        });
+        document.removeEventListener('click', playAudio); // Remove listener after playback starts
+    };
+
+    document.addEventListener('click', playAudio);
+});

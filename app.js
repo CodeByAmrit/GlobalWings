@@ -7,7 +7,7 @@ const aircraftRoutes = require('./routes/aircraftRoutes');
 const pagesRoutes = require('./routes/pagesRoutes');
 
 const app = express();
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || 8001;
 
 app.disable('x-powered-by');
 
@@ -19,6 +19,9 @@ app.use(helmet({
             connectSrc: ["'self'", "blob:"],
             imgSrc: ["'self'", "blob:", "data:"],
             mediaSrc: ["'self'", "blob:"],
+            frameSrc: ["'self'", "https://sketchfab.com"],
+            scriptSrc: ["'self'", "'unsafe-inline'", "https://sketchfab.com"],
+            connectSrc: ["'self'", "https://sketchfab.com"],
         }
     }
 }));
@@ -43,6 +46,8 @@ app.use(favicon(path.join(__dirname, 'public', 'logos', 'favicon.ico')));
 // Routes
 app.use('/api', aircraftRoutes);
 app.use('/', pagesRoutes);
+app.use('/others', pagesRoutes);
+app.use('/search', pagesRoutes);
 
 // Error handling middleware
 app.use((err, req, res, next) => {
@@ -55,7 +60,7 @@ app.get('/logs', (req, res) => {
     const logStream = morgan.token('combined', (req, res) => {
         // Format the log message as desired
         return `${req.method} ${req.url} - ${res.statusCode} - ${req.headers['user-agent']}`;
-    })(req, res, () => {});
+    })(req, res, () => { });
 
     // Create a response stream and pipe the log stream to it
     const responseStream = res.writeHead(200, { 'Content-Type': 'text/plain' });
