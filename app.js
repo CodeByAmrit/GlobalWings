@@ -22,6 +22,7 @@ app.use(helmet({
             frameSrc: ["'self'", "https://sketchfab.com"],
             scriptSrc: ["'self'", "'unsafe-inline'", "https://sketchfab.com"],
             connectSrc: ["'self'", "https://sketchfab.com"],
+            objectSrc: ["'self'", "blob:"],
         }
     }
 }));
