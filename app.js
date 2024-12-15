@@ -16,13 +16,13 @@ app.use(helmet({
     contentSecurityPolicy: {
         directives: {
             defaultSrc: ["'self'"],
-            connectSrc: ["'self'", "blob:"],
+            connectSrc: ["'self'", "blob:", "https://sketchfab.com"],
             imgSrc: ["'self'", "blob:", "data:"],
             mediaSrc: ["'self'", "blob:"],
             frameSrc: ["'self'", "https://sketchfab.com"],
             scriptSrc: ["'self'", "'unsafe-inline'", "https://sketchfab.com"],
-            connectSrc: ["'self'", "https://sketchfab.com"],
             objectSrc: ["'self'", "blob:"],
+            styleSrc: ["'self'", "'unsafe-inline'"],
         }
     }
 }));
