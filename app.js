@@ -23,7 +23,6 @@ app.use(
                 frameSrc: ["'self'", "https://sketchfab.com"],
                 scriptSrc: [
                     "'self'",
-                    "'unsafe-inline'",
                     "https://sketchfab.com",
                     "https://static.cloudflareinsights.com",
                 ],
@@ -38,6 +37,16 @@ app.use(
         ieNoOpen: true,
         noSniff: true,
         xssFilter: true,
+        // Permissions-Policy: Disable unused features globally
+        permissionsPolicy: {
+            features: {
+                geolocation: [],
+                camera: [],
+                microphone: [],
+                fullscreen: [],
+                payment: [],
+            },
+        },
     })
 );
 
