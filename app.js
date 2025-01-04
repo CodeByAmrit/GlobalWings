@@ -17,17 +17,19 @@ app.use(
         contentSecurityPolicy: {
             directives: {
                 defaultSrc: ["'self'"],
-                connectSrc: ["'self'", "blob:", "https://sketchfab.com"],
-                imgSrc: ["'self'", "blob:", "data:"],
-                mediaSrc: ["'self'", "blob:"],
-                frameSrc: ["'self'", "https://sketchfab.com"],
+                connectSrc: ["'self'", "https://sketchfab.com", "blob:"],
+                imgSrc: ["'self'", "blob:", "data:"], // Restrict image sources
+                mediaSrc: ["'self'", "blob:"], // Restrict media sources
+                frameSrc: ["'self'", "https://sketchfab.com"], // Allow embedding from trusted sites only
                 scriptSrc: [
                     "'self'",
                     "https://sketchfab.com",
                     "https://static.cloudflareinsights.com",
+                    "https://globalwings.codebyamrit.co.in"
                 ],
-                objectSrc: ["'self'", "blob:"],
-                styleSrc: ["'self'", "'unsafe-inline'"],
+                objectSrc: ["'none'"], // Prevent the use of <object>, <embed>, or <applet> elements
+                styleSrc: ["'self'", "'unsafe-inline'"], // Consider external stylesheets over inline ones
+                frameAncestors: ["'none'"], // Prevent the page from being embedded in frames
             },
         },
         referrerPolicy: { policy: 'no-referrer' },
@@ -54,9 +56,7 @@ app.use(
 app.set('view engine', 'ejs');
 
 // Middleware: Log HTTP requests
-app.use(
-    morgan(process.env.NODE_ENV === 'development' ? 'dev' : 'combined')
-);
+app.use(morgan(process.env.NODE_ENV === 'development' ? 'dev' : 'combined'));
 
 // Middleware: Parse JSON payloads and URL-encoded form data
 app.use(express.json());
