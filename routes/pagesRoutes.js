@@ -9,7 +9,7 @@ const axios = require('axios');
 dotenv.config();
 
 const API_3D_sketchfab = process.env.API_3D_sketchfab;
-console.log(API_3D_sketchfab);
+// console.log(API_3D_sketchfab);
 
 router.get('/', async (req, res) => {
   try {
@@ -29,7 +29,7 @@ router.get('/', async (req, res) => {
 
 router.get("/viewer/:id", async (req, res) => {
   const { id } = req.params;
-  console.log(id);
+  // console.log(id);
 
   try {
     const connection = await pool.getConnection();
@@ -42,7 +42,7 @@ router.get("/viewer/:id", async (req, res) => {
       }
 
       const oneCraftData = { aircraft: result[0] }
-      console.log(oneCraftData);
+      // console.log(oneCraftData);
 
       res.status(200).render("viewer", oneCraftData); // 200 OK
     } finally {

@@ -11,35 +11,59 @@ const port = process.env.PORT || 8001;
 
 app.disable('x-powered-by');
 
-// Middleware: Set security headers using helmet
-app.use(helmet({
-    contentSecurityPolicy: {
-        directives: {
-            defaultSrc: ["'self'"],
-            connectSrc: ["'self'", "blob:", "https://sketchfab.com"],
-            imgSrc: ["'self'", "blob:", "data:"],
-            mediaSrc: ["'self'", "blob:"],
-            frameSrc: ["'self'", "https://sketchfab.com"],
-            scriptSrc: ["'self'", "'unsafe-inline'", "https://sketchfab.com"],
-            objectSrc: ["'self'", "blob:"],
-            styleSrc: ["'self'", "'unsafe-inline'"],
-        }
-    }
-}));
+// Middleware: Set security headers using Helmet
+app.use(
+    helmet({
+        contentSecurityPolicy: {
+            directives: {
+                defaultSrc: ["'self'"],
+                connectSrc: ["'self'", "blob:", "https://sketchfab.com"],
+                imgSrc: ["'self'", "blob:", "data:"],
+                mediaSrc: ["'self'", "blob:"],
+                frameSrc: ["'self'", "https://sketchfab.com"],
+                scriptSrc: [
+                    "'self'",
+                    "'unsafe-inline'",
+                    "https://sketchfab.com",
+                    "https://static.cloudflareinsights.com",
+                ],
+                objectSrc: ["'self'", "blob:"],
+                styleSrc: ["'self'", "'unsafe-inline'"],
+            },
+        },
+        referrerPolicy: { policy: 'no-referrer' },
+        frameguard: { action: 'deny' },
+        hidePoweredBy: true,
+        hsts: true,
+        ieNoOpen: true,
+        noSniff: true,
+        xssFilter: true,
+    })
+);
 
-// Set EJS as templating engine
+// Set EJS as the templating engine
 app.set('view engine', 'ejs');
 
-// Middleware: Logging HTTP requests
-app.use(morgan('combined'));  // Enable this if needed
+// Middleware: Log HTTP requests
+app.use(
+    morgan(process.env.NODE_ENV === 'development' ? 'dev' : 'combined')
+);
 
-// Middleware: Parse JSON payloads
+// Middleware: Parse JSON payloads and URL-encoded form data
 app.use(express.json());
-// middleware: parse post form data
 app.use(express.urlencoded({ extended: false }));
 
-// Serve static files from the public directory
-app.use(express.static(path.join(__dirname, 'public')));
+// Serve static files from the public directory with cache control
+app.use(
+    express.static(path.join(__dirname, 'public'), {
+        maxAge: '1d',
+        setHeaders: (res, filePath) => {
+            if (filePath.endsWith('.html')) {
+                res.setHeader('Cache-Control', 'no-cache');
+            }
+        },
+    })
+);
 
 // Serve favicon
 app.use(favicon(path.join(__dirname, 'public', 'logos', 'favicon.ico')));
@@ -56,16 +80,9 @@ app.use((err, req, res, next) => {
     res.status(500).json({ error: 'Internal Server Error' });
 });
 
+// Logs endpoint
 app.get('/logs', (req, res) => {
-    // Access the log stream from morgan
-    const logStream = morgan.token('combined', (req, res) => {
-        // Format the log message as desired
-        return `${req.method} ${req.url} - ${res.statusCode} - ${req.headers['user-agent']}`;
-    })(req, res, () => { });
-
-    // Create a response stream and pipe the log stream to it
-    const responseStream = res.writeHead(200, { 'Content-Type': 'text/plain' });
-    logStream.pipe(responseStream);
+    res.status(200).send('Logs functionality is under development.');
 });
 
 // Start the server
