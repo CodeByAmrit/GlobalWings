@@ -1,3 +1,4 @@
+# Build context ignore
 node_modules
 npm-debug.log
 .git
@@ -6,8 +7,9 @@ npm-debug.log
 Dockerfile
 docker-compose.yml
 .dockerignore
-*.sqlite
-data.sql
-DB_structure.sql
-indian.sql
-user.sql
+README.md
+docs
+tests
+scripts/*.sql
+database/*.sqlite
+database/*.db
