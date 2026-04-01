@@ -1,8 +1,5 @@
+let card = document.getElementsByClassName('card-hover');
 
-let card = document.getElementsByClassName("card-hover");
-
-
-
-function openAircraft(id){
-    console.log(id);
+function openAircraft(id) {
+  console.log(id);
 }

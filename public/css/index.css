@@ -1,58 +1,413 @@
-.card-hover {
-    cursor: pointer;
+/* SkyForge Modern Design System */
+:root {
+  --bg-deep: #0a0c12;
+  --bg-accent: radial-gradient(
+    circle at 15% 30%,
+    rgba(20, 30, 55, 0.5) 0%,
+    #07090f 100%
+  );
+  --cyan-glow: rgba(0, 160, 255, 0.2);
+  --glass-bg: rgba(15, 20, 30, 0.55);
+  --glass-border: rgba(80, 140, 210, 0.25);
+  --text-main: #f0f3fc;
+  --text-dim: #93adcf;
+  --accent-blue: #3b82f6;
+  --accent-cyan: #0ad2ff;
 }
 
-.card-hover:hover {
-    scale: 1.05;
-    background-color: #0f1c23 !important;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.customDarkBgLight {
-    background: radial-gradient(#24323a, #0f1c23) !important;
+body {
+  background: var(--bg-deep);
+  background-image: var(--bg-accent);
+  font-family: 'Inter', sans-serif;
+  color: var(--text-main);
+  overflow-x: hidden;
 }
 
-.opa50 {
-    background-color: #0f1c2370;
+/* Glass panels */
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  border-radius: 2rem;
 }
 
-.height100 {
-    height: 100vh;
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #11151f;
+}
+::-webkit-scrollbar-thumb {
+  background: #2c6e9e;
+  border-radius: 10px;
 }
 
-.positionSet {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+/* ----- HERO SECTION (Immersive 3D) ----- */
+.hero-immersive {
+  position: relative;
+  width: 100%;
+  min-height: 92vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin-bottom: 2rem;
 }
 
-.fontlarge {
-
-    font-size: 150px;
-    transition: all 2s ease-in-out;
-    /* Smooth transition */
-    z-index: 10;
+.hero-bg-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at 70% 40%,
+    var(--cyan-glow),
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 0;
 }
 
-/* Transition effect */
-.transition-text {
-    animation: moveAndShrink 3s ease-in-out forwards;
-    animation-delay: 4s;
+.hero-grid {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image:
+    linear-gradient(rgba(60, 130, 200, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(60, 130, 200, 0.08) 1px, transparent 1px);
+  background-size: 50px 50px;
+  pointer-events: none;
 }
 
-/* Keyframes for moving and shrinking */
-@keyframes moveAndShrink {
-    0% {
-        font-size: 150px;
-        top: 10%;
-        transform: translateY(0);
-    }
+.hero-content-3d {
+  position: relative;
+  z-index: 12;
+  text-align: center;
+  width: 100%;
+  padding: 3rem 1.5rem;
+}
 
-    100% {
-        font-size: 80px;
-        /* Smaller size */
-        top: -50%;
-        /* Move upward */
-        transform: translateY(-130%);
-    }
+.hero-badge {
+  display: inline-block;
+  background: rgba(10, 210, 255, 0.2);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(0, 200, 255, 0.4);
+  padding: 0.3rem 1.2rem;
+  border-radius: 60px;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+  color: #aaf0ff;
+}
+
+.hero-title {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(3rem, 10vw, 6rem);
+  font-weight: 800;
+  background: linear-gradient(135deg, #ffffff, #7bc5ff, #2f93e0);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  text-shadow: 0 2px 20px rgba(0, 160, 255, 0.2);
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.02em;
+}
+
+.hero-sub {
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: #bdd4ff;
+  max-width: 580px;
+  margin: 0 auto 2rem auto;
+  opacity: 0.9;
+}
+
+.model-stage {
+  max-width: 620px;
+  margin: 1rem auto 0 auto;
+  border-radius: 2rem;
+  overflow: hidden;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(0, 0, 0, 0.2) 0%,
+    rgba(0, 0, 0, 0.5) 100%
+  );
+  box-shadow:
+    0 25px 45px -12px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.model-viewer-hero {
+  width: 100%;
+  height: 380px;
+  background: transparent;
+  --poster-color: transparent;
+}
+
+/* search section - floating bar */
+.search-orbital {
+  transform: translateY(-40px);
+  margin-bottom: 0px;
+  position: relative;
+  z-index: 25;
+}
+
+.search-glass {
+  background: rgba(12, 18, 28, 0.85);
+  backdrop-filter: blur(20px);
+  border-radius: 80px;
+  border: 1px solid rgba(80, 150, 230, 0.4);
+  padding: 0.25rem 0.25rem 0.25rem 1.5rem;
+  box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.4);
+  transition: all 0.2s ease;
+}
+
+.search-glass:focus-within {
+  border-color: #3b9eff;
+  box-shadow: 0 0 18px rgba(59, 158, 255, 0.3);
+}
+
+.search-input-modern {
+  background: transparent;
+  border: none;
+  padding: 0.9rem 0;
+  color: #fff;
+  font-weight: 500;
+  font-size: 1rem;
+  width: 100%;
+  outline: none;
+}
+
+.search-input-modern::placeholder {
+  color: #8e9bb5;
+  font-weight: 400;
+}
+
+.btn-radial {
+  background: linear-gradient(105deg, #1e88e5, #0b5ea0);
+  border: none;
+  padding: 0.6rem 1.8rem;
+  border-radius: 60px;
+  font-weight: 600;
+  color: white;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0, 100, 200, 0.3);
+}
+
+.btn-radial:hover {
+  background: linear-gradient(105deg, #2c9eff, #146bb3);
+  transform: scale(1.02);
+  box-shadow: 0 8px 18px rgba(0, 130, 230, 0.4);
+}
+
+.btn-add-modern {
+  background: rgba(40, 60, 90, 0.7);
+  backdrop-filter: blur(4px);
+  border-radius: 60px;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  color: #c3e2ff;
+  transition: all 0.2s;
+  border: 1px solid rgba(70, 140, 210, 0.5);
+  margin-left: 8px;
+}
+
+.btn-add-modern:hover {
+  background: #1f6392;
+  color: white;
+  border-color: #80bcff;
+}
+
+/* fleet section */
+.fleet-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid rgba(80, 140, 210, 0.3);
+  padding-bottom: 0.75rem;
+}
+
+.section-eyebrow {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-weight: 500;
+  color: #6c9fd1;
+}
+
+.fleet-title {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 2.2rem;
+  letter-spacing: -0.01em;
+  background: linear-gradient(120deg, #ffffff, #94c0f0);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+/* Card redesign - futuristic glass */
+.aircraft-card-modern {
+  background: rgba(12, 18, 26, 0.65);
+  backdrop-filter: blur(12px);
+  border-radius: 2rem;
+  border: 1px solid rgba(70, 140, 210, 0.2);
+  transition: all 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+  overflow: hidden;
+  height: 100%;
+  transform: translateY(0);
+}
+
+.aircraft-card-modern:hover {
+  transform: translateY(-8px);
+  border-color: rgba(80, 170, 255, 0.6);
+  box-shadow: 0 20px 35px -15px rgba(0, 100, 200, 0.3);
+  background: rgba(18, 26, 38, 0.75);
+}
+
+.card-badge-modern {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(0, 130, 200, 0.2);
+  backdrop-filter: blur(4px);
+  border-radius: 50px;
+  padding: 0.3rem 0.9rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  border: 1px solid rgba(0, 180, 255, 0.3);
+  color: #bbe2ff;
+}
+
+.country-chip {
+  background: rgba(80, 100, 140, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #cddef7;
+}
+
+.aircraft-name-modern {
+  font-size: 1.65rem;
+  font-weight: 700;
+  font-family: 'Syne', sans-serif;
+  margin: 1rem 0 0.2rem 0;
+  letter-spacing: -0.3px;
+  background: linear-gradient(to right, #fff, #c6e2ff);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.manufacturer-modern {
+  color: #93adcf;
+  font-weight: 500;
+  font-size: 0.85rem;
+  border-left: 2px solid #2e7eb0;
+  padding-left: 10px;
+  margin-top: 6px;
+}
+
+.specs-grid-modern {
+  display: flex;
+  justify-content: space-between;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 1.2rem;
+  padding: 0.8rem 1rem;
+  margin: 1rem 0;
+  border: 1px solid rgba(80, 150, 220, 0.2);
+}
+
+.spec-cell {
+  text-align: center;
+  flex: 1;
+}
+
+.spec-label-sm {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: #8aa9d0;
+  letter-spacing: 0.5px;
+}
+
+.spec-value-lg {
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: #ecf5ff;
+}
+
+.btn-explore-modern {
+  background: rgba(30, 100, 160, 0.2);
+  border: 1px solid rgba(80, 150, 230, 0.5);
+  border-radius: 2rem;
+  padding: 0.7rem 0;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: #cde4ff;
+  transition: all 0.25s;
+  text-decoration: none;
+}
+
+.btn-explore-modern:hover {
+  background: #1a6caf;
+  border-color: #8bcbff;
+  color: white;
+  gap: 15px;
+}
+
+footer {
+  border-top: 1px solid rgba(80, 140, 210, 0.2);
+  margin-top: 4rem;
+  padding: 2rem;
+  font-size: 0.8rem;
+  color: #6d85ac;
+}
+
+/* Animations */
+@keyframes fadeScale {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.card-animate {
+  animation: fadeScale 0.4s ease forwards;
+}
+
+@media (max-width: 768px) {
+  .search-glass {
+    border-radius: 60px;
+    flex-wrap: wrap;
+    padding: 0.5rem 1rem;
+  }
+  .btn-radial {
+    padding: 0.4rem 1.2rem;
+  }
+  .aircraft-name-modern {
+    font-size: 1.4rem;
+  }
+  .hero-title {
+    font-size: 4rem;
+  }
 }

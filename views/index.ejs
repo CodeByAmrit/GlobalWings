@@ -3,70 +3,139 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GlobalWings - Aircraft Database</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/index.css">
-    <link rel="stylesheet" href="css/scroll.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>SkyForge | Immersive Aircraft Intelligence</title>
+    
+    <!-- Fonts & Preconnects -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap 5 -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/index.css?v=1.2">
+    <link rel="stylesheet" href="/css/scroll.css">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 
-<body class="bg-dark text-white customDarkBgLight">
-    <div class="container height100">
+<body class="bg-main text-white">
 
-        <div class="card-body position-relative">
-            <div class="flex scaleUp mt-3 positionSet">
-                <!-- <a class="navbar-brand z-3" href="/">
-                    <img src="/logos/gw_logo.svg" width="120px" height="120px" alt="GlobalWings">
-                </a> -->
-                <p class="text-center m-0 p-0 fw-bold fontlarge transition-text">
-                    Global&nbsp;Wings
-                </p>
-
-            </div>
-            <!-- Change Model with Dynamic EJS -->
-            <model-viewer src="/models/2.glb" alt="3D model of an aircraft" auto-rotate camera-orbit="90deg 90deg auto"
-                shadow-intensity="1.5" ar ar-modes="webxr scene-viewer quick-look" camera-target="20m 20m 0m"
-                field-of-view="70deg" touch-action="pan-y" class="w-100 height100">
+<!-- Immersive Hero with 3D Viewer -->
+<div class="hero-immersive">
+    <div class="hero-bg-glow"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-content-3d">
+        <div class="hero-badge">
+            <i class="bi bi-cloud-fog2 me-1"></i> AEROSPACE INTELLIGENCE
+        </div>
+        <h1 class="hero-title">SkyForge</h1>
+        <p class="hero-sub">Precision engineering meets immersive 3D exploration. Discover the world's most advanced aircraft database.</p>
+        
+        <div class="model-stage">
+            <!-- Dynamically pick the first aircraft as the hero model -->
+            <% const heroModel = aircraft.find(a => a.aircraft_id === 2) || aircraft[0]; %>
+            <model-viewer 
+                id="heroModelViewer"
+                src="<%= heroModel.model_path %>" 
+                alt="Dynamic aircraft 3D model" 
+                auto-rotate 
+                camera-orbit="75deg 85deg auto"
+                shadow-intensity="1.8" 
+                ar 
+                ar-modes="webxr scene-viewer quick-look" 
+                camera-target="0m 0m 0m"
+                field-of-view="40deg" 
+                touch-action="pan-y" 
+                exposure="1.2"
+                class="model-viewer-hero">
+                <div slot="progress-bar" class="progress-bar hide"></div>
             </model-viewer>
         </div>
     </div>
-    <div class="container mt-5">
-        <h1 class="text-center mb-4">GlobalWings Aircraft</h1>
+</div>
 
-        <!-- Search Form -->
-        <form id="searchForm" class="d-flex mb-4">
-            <input class="form-control" type="search" id="searchInput" placeholder="Search aircraft by name..."
-                aria-label="Search">
-            <button class="btn btn-outline-success mx-3" type="submit">Search</button>
-            <a class="btn btn-primary" href="/add.html">Add</a>
-        </form>
-
-        <!-- Aircraft Cards -->
-        <div class="row" id="aircraftCards">
-            <% aircraft.forEach(aircraft=> { %>
-                <div class="col-md-4 mb-4">
-                    <div class="card card-hover text-white opa50">
-
-                        <div class="card-body">
-                            <h5 class="card-title">
-                                <%= aircraft.aircraft_name %>
-                            </h5>
-                            <p class="card-text">Model: <%= aircraft.aircraft_model %>
-                            </p>
-                            <p class="card-text">Type: <%= aircraft.type_name %>
-                            </p>
-                            <a href="/viewer/<%= aircraft.aircraft_id %>" class="btn btn-primary">Open</a>
-                        </div>
-                    </div>
-                </div>
-                <% }); %>
+<!-- Main Container -->
+<div class="container" style="margin-top: -20px;">
+    <!-- Floating search bar -->
+    <div class="search-orbital">
+        <div class="search-glass d-flex align-items-center justify-content-between">
+            <div class="d-flex align-items-center w-100">
+                <i class="bi bi-search me-2" style="color: #6c9fd1; font-size: 1.3rem;"></i>
+                <input type="text" id="searchInput" class="search-input-modern" placeholder="Search by model, name, or manufacturer... e.g., 'Boeing', 'Jet', '787'">
+            </div>
+            <div class="d-flex">
+                <button id="searchBtn" class="btn-radial" style="border-radius: 60px;"><i class="bi bi-arrow-right-short me-1"></i> Search</button>
+                <a href="/add.html" class="btn-add-modern ms-2" title="Add new aircraft">
+                    <i class="bi bi-plus-lg"></i>
+                </a>
+            </div>
         </div>
     </div>
 
+    <!-- Fleet Directory Header -->
+    <div class="fleet-header mt-4">
+        <div>
+            <div class="section-eyebrow"><i class="bi bi-grid-3x3-gap-fill me-1"></i> FLEET INVENTORY</div>
+            <h2 class="fleet-title">Active Airframes</h2>
+        </div>
+        <div>
+            <span class="card-badge-modern" id="resultCountBadge">
+                <i class="bi bi-airplane me-1"></i> <%= aircraft.length %> airframes active
+            </span>
+        </div>
+    </div>
 
-    <script src="js/index.js"></script>
-    <script src="js/bootstrap.bundle.min.js"></script>
-    <script type="module" src="/js/model-viewer.min.js"></script>
+    <!-- Aircraft Cards Grid -->
+    <div class="row g-4" id="aircraftCardsGrid">
+        <% aircraft.forEach(item => { %>
+            <div class="col-md-6 col-lg-4 aircraft-card-wrapper card-animate" 
+                 data-name="<%= item.aircraft_name %>" 
+                 data-model="<%= item.aircraft_model %>"
+                 data-type="<%= item.type_name %>">
+                <div class="aircraft-card-modern p-4 d-flex flex-column h-100">
+                    <div class="d-flex justify-content-between align-items-start flex-wrap gap-2">
+                        <span class="card-badge-modern"><i class="bi bi-tag-fill me-1"></i> <%= item.type_name %></span>
+                        <span class="card-badge-modern country-chip"><i class="bi bi-geo-alt-fill me-1"></i> <%= item.country_name %></span>
+                    </div>
+                    
+                    <div class="aircraft-name-modern"><%= item.aircraft_name %></div>
+                    <div class="manufacturer-modern"><%= item.aircraft_model %></div>
+                    
+                    <div class="specs-grid-modern mt-2">
+                        <div class="spec-cell">
+                            <div class="spec-label-sm"><i class="bi bi-speedometer2"></i> MAX SPEED</div>
+                            <div class="spec-value-lg"><%= item.aircraft_speed %> <span style="font-size:0.7rem;">km/h</span></div>
+                        </div>
+                        <div class="spec-cell">
+                            <div class="spec-label-sm"><i class="bi bi-globe2"></i> RANGE</div>
+                            <div class="spec-value-lg"><%= item.aircraft_range %> <span style="font-size:0.7rem;">km</span></div>
+                        </div>
+                    </div>
+                    
+                    <a href="/viewer/<%= item.aircraft_id %>" class="btn-explore-modern mt-auto text-decoration-none">
+                        <span>Inspect Platform</span> <i class="bi bi-arrow-right-circle"></i>
+                    </a>
+                </div>
+            </div>
+        <% }); %>
+    </div>
+</div>
+
+<footer class="text-center">
+    <div class="container">
+        <p><i class="bi bi-shield-check me-1"></i> GlobalWings Intelligence • Next-gen 3D visualization • Real-time airframes</p>
+        <p class="small opacity-50">© 2026 SkyForge Aerospace Database. All systems nominal.</p>
+    </div>
+</footer>
+
+<!-- Scripts -->
+<script src="/js/bootstrap.bundle.min.js"></script>
+<script type="module" src="/js/model-viewer.min.js"></script>
+<script src="/js/index.js?v=1.2"></script>
+
 </body>
-
 </html>

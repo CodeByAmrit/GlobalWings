@@ -1,27 +1,45 @@
-const mysql = require('mysql2/promise');
+const Database = require('better-sqlite3');
+const path = require('path');
 const dotenv = require('dotenv');
 
 dotenv.config();
 
-const pool = mysql.createPool({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_DATABASE,
-  port: process.env.DB_PORT,
-  
-  connectionLimit: 10 // Adjust based on your needs
-});
+const dbPath =
+  process.env.DB_PATH ||
+  path.resolve(__dirname, '../database/globalwings.sqlite');
 
-async function getConnection() {
-  try {
-    return await pool.getConnection();
-  } catch (error) {
-    console.error('Error getting connection from pool:', error);
-    throw error;
-  }
-}
+const db = new Database(dbPath);
+
+// Better-sqlite3 is synchronous.
+// We provide a similar interface to mysql2/promise for compatibility.
+const pool = {
+  execute: async (sql, params = []) => {
+    try {
+      const stmt = db.prepare(sql);
+      if (sql.trim().toLowerCase().startsWith('select')) {
+        const rows = stmt.all(params);
+        return [rows];
+      } else {
+        const info = stmt.run(params);
+        return [{ ...info, insertId: info.lastInsertRowid }];
+      }
+    } catch (error) {
+      console.error('Database Error:', error);
+      throw error;
+    }
+  },
+  query: async (sql, params = []) => {
+    return pool.execute(sql, params);
+  },
+  getConnection: async () => {
+    return {
+      execute: pool.execute,
+      release: () => {}, // No-op for SQLite
+    };
+  },
+};
 
 module.exports = {
-  getConnection, pool
+  pool,
+  db, // Export raw db for advanced cases if needed
 };

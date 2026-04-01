@@ -4,10 +4,14 @@
   "description": "A web application for managing and displaying aircraft information.",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon app.js"
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "init-db": "node scripts/init-db.js",
+    "format": "prettier --write ."
   },
   "dependencies": {
     "axios": "^1.7.9",
+    "better-sqlite3": "^12.8.0",
     "dotenv": "^16.4.5",
     "ejs": "^3.1.10",
     "express": "^4.19.2",
@@ -17,7 +21,11 @@
     "serve-favicon": "^2.5.0"
   },
   "devDependencies": {
-    "nodemon": "^3.1.4"
+    "eslint": "^10.1.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.5",
+    "nodemon": "^3.1.4",
+    "prettier": "^3.8.1"
   },
   "author": "Amrit",
   "license": "ISC"

@@ -13,43 +13,68 @@ app.disable('x-powered-by');
 
 // Middleware: Set security headers using Helmet
 app.use(
-    helmet({
-        contentSecurityPolicy: {
-            directives: {
-                defaultSrc: ["'self'"],
-                connectSrc: ["'self'", "https://sketchfab.com", "blob:"],
-                imgSrc: ["'self'", "blob:", "data:"], // Restrict image sources
-                mediaSrc: ["'self'", "blob:"], // Restrict media sources
-                frameSrc: ["'self'", "https://sketchfab.com"], // Allow embedding from trusted sites only
-                scriptSrc: [
-                    "'self'",
-                    "https://sketchfab.com",
-                    "https://static.cloudflareinsights.com",
-                    "https://globalwings.codebyamrit.co.in"
-                ],
-                objectSrc: ["'none'"], // Prevent the use of <object>, <embed>, or <applet> elements
-                styleSrc: ["'self'", "'unsafe-inline'"], // Consider external stylesheets over inline ones
-                frameAncestors: ["'none'"], // Prevent the page from being embedded in frames
-            },
-        },
-        referrerPolicy: { policy: 'no-referrer' },
-        frameguard: { action: 'deny' },
-        hidePoweredBy: true,
-        hsts: true,
-        ieNoOpen: true,
-        noSniff: true,
-        xssFilter: true,
-        // Permissions-Policy: Disable unused features globally
-        permissionsPolicy: {
-            features: {
-                geolocation: [],
-                camera: [],
-                microphone: [],
-                fullscreen: [],
-                payment: [],
-            },
-        },
-    })
+  helmet({
+    contentSecurityPolicy: {
+      directives: {
+        defaultSrc: ["'self'"],
+        connectSrc: [
+          "'self'",
+          'https://sketchfab.com',
+          'blob:',
+          'https://fonts.googleapis.com',
+          'https://fonts.gstatic.com',
+        ],
+        imgSrc: ["'self'", 'blob:', 'data:', 'https://*.sketchfab.com'],
+        mediaSrc: ["'self'", 'blob:'],
+        frameSrc: ["'self'", 'https://sketchfab.com'],
+        fontSrc: [
+          "'self'",
+          'https://fonts.gstatic.com',
+          'https://cdn.jsdelivr.net',
+        ],
+        scriptSrc: [
+          "'self'",
+          "'unsafe-inline'",
+          'https://sketchfab.com',
+          'https://static.cloudflareinsights.com',
+          'https://ajax.googleapis.com', // For model-viewer if needed from CDN
+        ],
+        objectSrc: ["'none'"],
+        styleSrc: [
+          "'self'",
+          "'unsafe-inline'",
+          'https://fonts.googleapis.com',
+          'https://cdn.jsdelivr.net',
+        ],
+        connectSrc: [
+          "'self'",
+          'https://sketchfab.com',
+          'blob:',
+          'https://fonts.googleapis.com',
+          'https://fonts.gstatic.com',
+          'https://cdn.jsdelivr.net',
+        ],
+        frameAncestors: ["'none'"],
+      },
+    },
+    referrerPolicy: { policy: 'no-referrer' },
+    frameguard: { action: 'deny' },
+    hidePoweredBy: true,
+    hsts: true,
+    ieNoOpen: true,
+    noSniff: true,
+    xssFilter: true,
+    // Permissions-Policy: Disable unused features globally
+    permissionsPolicy: {
+      features: {
+        geolocation: [],
+        camera: [],
+        microphone: [],
+        fullscreen: [],
+        payment: [],
+      },
+    },
+  }),
 );
 
 // Set EJS as the templating engine
@@ -64,14 +89,14 @@ app.use(express.urlencoded({ extended: false }));
 
 // Serve static files from the public directory with cache control
 app.use(
-    express.static(path.join(__dirname, 'public'), {
-        maxAge: '1d',
-        setHeaders: (res, filePath) => {
-            if (filePath.endsWith('.html')) {
-                res.setHeader('Cache-Control', 'no-cache');
-            }
-        },
-    })
+  express.static(path.join(__dirname, 'public'), {
+    maxAge: '1d',
+    setHeaders: (res, filePath) => {
+      if (filePath.endsWith('.html')) {
+        res.setHeader('Cache-Control', 'no-cache');
+      }
+    },
+  }),
 );
 
 // Serve favicon
@@ -85,20 +110,20 @@ app.use('/search', pagesRoutes);
 
 // Error handling middleware
 app.use((err, req, res, next) => {
-    console.error(err.stack);
-    res.status(500).json({ error: 'Internal Server Error' });
+  console.error(err.stack);
+  res.status(500).json({ error: 'Internal Server Error' });
 });
 
 // Logs endpoint
 app.get('/logs', (req, res) => {
-    res.status(200).send('Logs functionality is under development.');
+  res.status(200).send('Logs functionality is under development.');
 });
 
 // Start the server
 app.listen(port, (err) => {
-    if (err) {
-        console.error('Failed to start the server:', err);
-    } else {
-        console.log(`Server is running on http://localhost:${port}`);
-    }
+  if (err) {
+    console.error('Failed to start the server:', err);
+  } else {
+    console.log(`Server is running on http://localhost:${port}`);
+  }
 });

@@ -1,0 +1,13 @@
+node_modules
+npm-debug.log
+.git
+.gitignore
+.env
+Dockerfile
+docker-compose.yml
+.dockerignore
+*.sqlite
+data.sql
+DB_structure.sql
+indian.sql
+user.sql

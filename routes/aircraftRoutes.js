@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const aircraftController = require('../controllers/aircraftController');
-const addNewAirCraft = require('../models/aircraftControllerPost');
 
 // Route to get all aircraft with filters
 router.get('/aircraft', aircraftController.getAllAircraft);
@@ -10,7 +9,6 @@ router.get('/aircraft', aircraftController.getAllAircraft);
 router.get('/aircraft/:id', aircraftController.getAircraftById);
 
 // Handle POST request to add new aircraft
-router.post('/aircraft', addNewAirCraft);
-
+router.post('/aircraft', aircraftController.addNewAircraft);
 
 module.exports = router;
