@@ -11,12 +11,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <!-- Bootstrap 5 -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
+    <!-- Tailwind CSS (via PostCSS/CLI) -->
     <link rel="stylesheet" href="/css/index.css?v=1.2">
-    <link rel="stylesheet" href="/css/scroll.css">
+    
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/logos/logo.svg">
 
@@ -24,7 +21,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 
-<body class="bg-main text-white">
+<body class="bg-sky-deep font-inter text-sky-main overflow-x-hidden">
 
 <!-- Immersive Hero with 3D Viewer -->
 <div class="hero-immersive">
@@ -32,10 +29,10 @@
     <div class="hero-grid"></div>
     <div class="hero-content-3d">
         <div class="hero-badge">
-            <i class="bi bi-cloud-fog2 me-1"></i> AEROSPACE INTELLIGENCE
+            <i class="bi bi-cloud-fog2 mr-1"></i> AEROSPACE INTELLIGENCE
         </div>
         <h1 class="hero-title">SkyForge</h1>
-        <p class="hero-sub">Precision engineering meets immersive 3D exploration. Discover the world's most advanced aircraft database.</p>
+        <p class="hero-sub px-4">Precision engineering meets immersive 3D exploration. Discover the world's most advanced aircraft database.</p>
 
         <div class="model-stage">
             <!-- Dynamically pick the first aircraft as the hero model -->
@@ -61,15 +58,15 @@
 </div>
 
 <!-- Main Container -->
-<div class="container" style="margin-top: -20px;">
+<div class="container mx-auto px-4 -mt-5 relative z-20">
     <!-- Floating search bar -->
     <div class="search-orbital">
         <div class="search-glass">
-            <div class="d-flex align-items-center w-100">
-                <i class="bi bi-search"></i>
+            <div class="flex items-center w-full">
+                <i class="bi bi-search text-sky-dim ml-2"></i>
                 <input type="text" id="searchInput" class="search-input-modern" placeholder="Search models, nations, or types...">
             </div>
-            <div class="d-flex align-items-center">
+            <div class="flex items-center">
                 <button id="searchBtn" class="btn-radial">
                     <i class="bi bi-arrow-right-short" style="font-size: 1.6rem;"></i>
                 </button>
@@ -81,46 +78,48 @@
     </div>
 
     <!-- Fleet Directory Header -->
-    <div class="fleet-header mt-4">
+    <div class="flex flex-col md:flex-row justify-between items-baseline gap-4 mt-12 mb-8 border-b border-sky-glass-border pb-3">
         <div>
-            <div class="section-eyebrow"><i class="bi bi-grid-3x3-gap-fill me-1"></i> FLEET INVENTORY</div>
-            <h2 class="fleet-title">Active Airframes</h2>
+            <div class="text-[0.75rem] uppercase tracking-[3px] font-medium text-sky-dim">
+                <i class="bi bi-grid-3x3-gap-fill mr-1"></i> FLEET INVENTORY
+            </div>
+            <h2 class="font-syne font-bold text-4xl tracking-tight text-white">Active Airframes</h2>
         </div>
         <div>
             <span class="card-badge-modern" id="resultCountBadge">
-                <i class="bi bi-airplane me-1"></i> <%= aircraft.length %> airframes active
+                <i class="bi bi-airplane mr-1"></i> <%= aircraft.length %> airframes active
             </span>
         </div>
     </div>
 
     <!-- Aircraft Cards Grid -->
-    <div class="row g-4" id="aircraftCardsGrid">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="aircraftCardsGrid">
         <% aircraft.forEach(item => { %>
-            <div class="col-md-6 col-lg-4 aircraft-card-wrapper card-animate"
+            <div class="aircraft-card-wrapper card-animate h-full"
                  data-name="<%= item.aircraft_name %>"
                  data-model="<%= item.aircraft_model %>"
                  data-type="<%= item.type_name %>">
-                <div class="aircraft-card-modern p-4 d-flex flex-column h-100">
-                    <div class="d-flex justify-content-between align-items-start flex-wrap gap-2">
-                        <span class="card-badge-modern"><i class="bi bi-tag-fill me-1"></i> <%= item.type_name %></span>
-                        <span class="card-badge-modern country-chip"><i class="bi bi-geo-alt-fill me-1"></i> <%= item.country_name %></span>
+                <div class="aircraft-card-modern p-6 flex flex-col h-full">
+                    <div class="flex justify-between items-start flex-wrap gap-2">
+                        <span class="card-badge-modern"><i class="bi bi-tag-fill mr-1"></i> <%= item.type_name %></span>
+                        <span class="card-badge-modern country-chip"><i class="bi bi-geo-alt-fill mr-1"></i> <%= item.country_name %></span>
                     </div>
 
                     <div class="aircraft-name-modern"><%= item.aircraft_name %></div>
                     <div class="manufacturer-modern"><%= item.aircraft_model %></div>
 
-                    <div class="specs-grid-modern mt-2">
-                        <div class="spec-cell">
+                    <div class="specs-grid-modern mt-4">
+                        <div class="spec-cell border-r border-white/10">
                             <div class="spec-label-sm"><i class="bi bi-speedometer2"></i> MAX SPEED</div>
-                            <div class="spec-value-lg"><%= item.aircraft_speed %> <span style="font-size:0.7rem;">km/h</span></div>
+                            <div class="spec-value-lg"><%= item.aircraft_speed %> <span class="text-[0.7rem] font-normal opacity-70">km/h</span></div>
                         </div>
                         <div class="spec-cell">
                             <div class="spec-label-sm"><i class="bi bi-globe2"></i> RANGE</div>
-                            <div class="spec-value-lg"><%= item.aircraft_range %> <span style="font-size:0.7rem;">km</span></div>
+                            <div class="spec-value-lg"><%= item.aircraft_range %> <span class="text-[0.7rem] font-normal opacity-70">km</span></div>
                         </div>
                     </div>
 
-                    <a href="/viewer/<%= item.aircraft_id %>" class="btn-explore-modern mt-auto text-decoration-none">
+                    <a href="/viewer/<%= item.aircraft_id %>" class="btn-explore-modern mt-auto">
                         <span>Inspect Platform</span> <i class="bi bi-arrow-right-circle"></i>
                     </a>
                 </div>
@@ -129,15 +128,14 @@
     </div>
 </div>
 
-<footer class="text-center">
-    <div class="container">
-        <p><i class="bi bi-shield-check me-1"></i> GlobalWings Intelligence • Next-gen 3D visualization • Real-time airframes</p>
-        <p class="small opacity-50">© 2026 SkyForge Aerospace Database. All systems nominal.</p>
+<footer class="text-center mt-20 p-8 border-t border-sky-glass-border">
+    <div class="container mx-auto">
+        <p class="text-sky-dim text-sm"><i class="bi bi-shield-check mr-1"></i> GlobalWings Intelligence • Next-gen 3D visualization • Real-time airframes</p>
+        <p class="text-xs opacity-50 mt-2">© 2026 SkyForge Aerospace Database. All systems nominal.</p>
     </div>
 </footer>
 
 <!-- Scripts -->
-<script src="/js/bootstrap.bundle.min.js"></script>
 <script type="module" src="/js/model-viewer.min.js"></script>
 <script src="/js/index.js?v=1.2"></script>
 

@@ -16,6 +16,9 @@ RUN npm install
 # Copy application source
 COPY . .
 
+# Run Tailwind CSS build (Production)
+RUN npm run build:css
+
 # STAGE 2: Production Runtime
 FROM node:24-alpine
 

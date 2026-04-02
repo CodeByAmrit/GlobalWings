@@ -1,0 +1,243 @@
+@import "tailwindcss";
+
+@theme {
+  /* SkyForge Design Tokens */
+  --color-sky-deep: #0a0c12;
+  --color-sky-main: #f0f3fc;
+  --color-sky-dim: #93adcf;
+  --color-sky-accent: #3b82f6;
+  --color-sky-cyan: #0ad2ff;
+  --color-sky-glass: rgba(15, 20, 30, 0.55);
+  --color-sky-glass-border: rgba(80, 140, 210, 0.25);
+
+  --font-inter: "Inter", sans-serif;
+  --font-syne: "Syne", sans-serif;
+  --font-outfit: "Outfit", sans-serif;
+
+  --background-image-sky-accent: radial-gradient(
+    circle at 15% 30%,
+    rgba(20, 30, 55, 0.5) 0%,
+    #07090f 100%
+  );
+  --background-image-cyan-glow: radial-gradient(
+    ellipse at 70% 40%,
+    rgba(0, 160, 255, 0.2),
+    transparent 70%
+  );
+}
+
+@layer base {
+  body {
+    @apply bg-sky-deep font-inter text-sky-main overflow-x-hidden;
+    background-image: var(--background-image-sky-accent);
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-black/20;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-sky-dim/30 rounded-full;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-sky-accent/50;
+  }
+}
+
+@layer components {
+  /* Navigation */
+  .glass-nav {
+    @apply fixed top-0 w-full z-50 backdrop-blur-md border-b border-sky-glass-border;
+    background: rgba(15, 20, 30, 0.4);
+  }
+
+  /* Hero Section */
+  .hero-immersive {
+    @apply relative w-full flex items-center justify-center overflow-hidden mb-8;
+    min-height: 92vh;
+  }
+
+  .hero-bg-glow {
+    @apply absolute inset-0 pointer-events-none z-0;
+    background: var(--background-image-cyan-glow);
+  }
+
+  .hero-grid {
+    @apply absolute w-full h-full pointer-events-none;
+    background-image: linear-gradient(rgba(60, 130, 200, 0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(60, 130, 200, 0.08) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+
+  .hero-content-3d {
+    @apply relative z-10 text-center w-full px-6 py-12;
+  }
+
+  .hero-badge {
+    @apply inline-block bg-sky-cyan/20 backdrop-blur-md border border-sky-cyan/40 px-5 py-1 rounded-full text-xs tracking-widest font-medium mb-6 text-[#aaf0ff];
+  }
+
+  .hero-title {
+    @apply font-syne font-extrabold mb-2 tracking-tighter;
+    font-size: clamp(3rem, 10vw, 6rem);
+    background: linear-gradient(135deg, #ffffff, #7bc5ff, #2f93e0);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 2px 20px rgba(0, 160, 255, 0.2);
+  }
+
+  .hero-sub {
+    @apply text-lg font-normal mx-auto mb-8 opacity-90 max-w-[580px] text-[#bdd4ff];
+  }
+
+  .model-stage {
+    @apply max-w-[620px] mx-auto mt-4 rounded-[2rem] overflow-hidden;
+    background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.5) 100%);
+    box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  }
+
+  .model-viewer-hero {
+    @apply w-full h-[380px] bg-transparent;
+    --poster-color: transparent;
+  }
+
+  /* Search & Navigation */
+  .search-orbital {
+    @apply max-w-[720px] mx-auto mt-5 px-3 relative z-20;
+  }
+
+  .search-glass {
+    @apply bg-white rounded-full p-2 border border-gray-100 flex items-center justify-between transition-all duration-200;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+  }
+
+  .search-glass:focus-within {
+    @apply border-sky-accent ring-sky-accent/10 ring-2;
+  }
+
+  .search-input-modern {
+    @apply bg-transparent border-none outline-none w-full px-2 py-1.5 text-gray-800 font-medium text-[0.95rem];
+  }
+
+  .search-input-modern::placeholder {
+    @apply text-sky-dim font-normal;
+  }
+
+  .btn-radial {
+    @apply bg-sky-accent text-white border-none px-4 py-2 text-sm rounded-full transition-all duration-200 flex items-center justify-center hover:bg-[#3a78e0] hover:scale-105 active:scale-95;
+  }
+
+  .btn-add-modern {
+    @apply flex items-center justify-center bg-slate-100 w-9 h-9 rounded-full transition-all duration-200 border-none ml-2 no-underline;
+  }
+
+  .btn-add-modern i {
+    @apply text-base text-sky-accent;
+  }
+
+  .btn-add-modern:hover {
+    @apply bg-sky-accent;
+  }
+
+  .btn-add-modern:hover i {
+    @apply text-white;
+  }
+
+  /* Fleet Cards */
+  .aircraft-card-modern {
+    @apply backdrop-blur-md rounded-[2rem] border border-sky-glass-border transition-all duration-500 overflow-hidden h-full transform;
+    background-color: rgba(12, 18, 26, 0.65);
+  }
+
+  .aircraft-card-modern:hover {
+    @apply -translate-y-2 border-sky-accent/60;
+    box-shadow: 0 20px 35px -15px rgba(0, 100, 200, 0.3);
+    background-color: rgba(18, 26, 38, 0.75);
+  }
+
+  .card-badge-modern {
+    @apply inline-flex items-center gap-1.5 bg-sky-accent/20 backdrop-blur-sm rounded-full px-4 py-1 text-[0.7rem] font-semibold tracking-wide border border-sky-accent/30 text-[#bbe2ff];
+  }
+
+  .country-chip {
+    @apply bg-slate-300/30 border-white/10 text-[#cddef7];
+  }
+
+  .aircraft-name-modern {
+    @apply text-2xl font-bold font-syne mt-4 mb-1 tracking-tight;
+    background: linear-gradient(to right, #fff, #c6e2ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .manufacturer-modern {
+    @apply text-sky-dim font-medium text-sm border-l-2 border-[#2e7eb0] pl-3 mt-1.5;
+  }
+
+  .specs-grid-modern {
+    @apply flex justify-between bg-black/30 rounded-[1.2rem] p-3 my-4 border border-sky-glass-border/20;
+  }
+
+  .spec-cell {
+    @apply text-center flex-1;
+  }
+
+  .spec-label-sm {
+    @apply text-[0.7rem] uppercase font-medium text-[#8aa9d0] tracking-wide;
+  }
+
+  .spec-value-lg {
+    @apply font-bold text-lg text-[#ecf5ff];
+  }
+
+  .btn-explore-modern {
+    @apply bg-sky-accent/20 border border-sky-accent/50 rounded-full py-3 font-semibold flex items-center justify-center gap-2.5 text-[#cde4ff] transition-all duration-200 no-underline hover:bg-sky-accent hover:border-sky-cyan hover:text-white hover:gap-4;
+  }
+
+  /* Form Components */
+  .form-glass {
+    @apply bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-8 md:p-12 shadow-2xl;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
+  }
+
+  .form-label-sky {
+    @apply block font-outfit font-semibold text-sky-dim mb-2 text-sm uppercase tracking-wider;
+  }
+
+  .form-input-sky {
+    @apply w-full bg-black/20 border border-white/10 text-white rounded-xl px-4 py-3 outline-none transition-all duration-300 placeholder:text-sky-dim/30;
+  }
+
+  .form-input-sky:focus {
+    @apply bg-black/30 border-sky-accent ring-2 ring-sky-accent/20;
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.3);
+  }
+
+  .btn-submit-sky {
+    @apply w-full bg-sky-accent text-white py-4 rounded-xl font-bold font-outfit text-lg transition-all duration-300 mt-4 shadow-lg hover:bg-blue-600 hover:-translate-y-0.5 hover:shadow-sky-accent/40 active:scale-95;
+  }
+
+  .header-back-sky {
+    @apply flex items-center no-underline text-sky-accent font-semibold mb-8 hover:text-sky-cyan transition-colors;
+  }
+
+  /* Animations */
+  @keyframes fadeScale {
+    from {
+      opacity: 0;
+      transform: scale(0.96);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  .card-animate {
+    animation: fadeScale 0.4s ease forwards;
+  }
+}
