@@ -7,21 +7,25 @@ services:
     restart: unless-stopped
     security_opt:
       - no-new-privileges:true
-    
+
     # Port alignment for the application (runs on 8001)
     ports:
       - "8001:8001"
-    
+
     # Persist the database across restarts/rebuilds
     volumes:
       - ./database:/app/database
-    
+
+    # Network configuration for Traefik
+    networks:
+      - proxy
+
     # Environment configuration
     environment:
       - NODE_ENV=production
       - PORT=8001
       - DB_PATH=/app/database/globalwings.sqlite
-    
+
     # Traefik labels for automatic routing and SSL
     labels:
       - "traefik.enable=true"
@@ -29,20 +33,25 @@ services:
       - "traefik.http.routers.globalwings.entrypoints=websecure"
       - "traefik.http.routers.globalwings.tls.certresolver=letsencrypt"
       - "traefik.http.services.globalwings.loadbalancer.server.port=8001"
-    
+
     # Production resource constraints and stability
     deploy:
       resources:
         limits:
           cpus: '0.5'
-          memory: 512M
+          memory: 1024M
         reservations:
           cpus: '0.2'
           memory: 256M
-    
+
     # Prevent disk overfill with large logs
     logging:
       driver: "json-file"
       options:
         max-size: "10m"
         max-file: "3"
+
+# Docker network shared with your Traefik instance
+networks:
+  proxy:
+    external: true

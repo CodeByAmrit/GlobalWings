@@ -100,7 +100,7 @@ app.use(
 );
 
 // Serve favicon
-app.use(favicon(path.join(__dirname, 'public', 'logos', 'favicon.ico')));
+app.use(favicon(path.join(__dirname, 'public', 'logos', 'logos.svg')));
 
 // Routes
 app.use('/api', aircraftRoutes);
@@ -120,10 +120,10 @@ app.get('/logs', (req, res) => {
 });
 
 // Start the server
-app.listen(port, (err) => {
+app.listen(port, '0.0.0.0', (err) => {
   if (err) {
     console.error('Failed to start the server:', err);
   } else {
-    console.log(`Server is running on http://localhost:${port}`);
+    console.log(`Server is running on http://0.0.0.0:${port}`);
   }
 });
