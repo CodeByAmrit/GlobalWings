@@ -100,7 +100,7 @@ app.use(
 );
 
 // Serve favicon
-app.use(favicon(path.join(__dirname, 'public', 'logos', 'logos.svg')));
+app.use(favicon(path.join(__dirname, 'public', 'logos', 'logo.svg')));
 
 // Routes
 app.use('/api', aircraftRoutes);

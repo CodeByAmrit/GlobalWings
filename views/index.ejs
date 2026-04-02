@@ -5,21 +5,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>SkyForge | Immersive Aircraft Intelligence</title>
-    
+
     <!-- Fonts & Preconnects -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    
+
     <!-- Bootstrap 5 -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
-    
+
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/css/index.css?v=1.2">
     <link rel="stylesheet" href="/css/scroll.css">
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="/logos/logos.svg">
-    
+    <link rel="icon" type="image/svg+xml" href="/logos/logo.svg">
+
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
@@ -36,22 +36,22 @@
         </div>
         <h1 class="hero-title">SkyForge</h1>
         <p class="hero-sub">Precision engineering meets immersive 3D exploration. Discover the world's most advanced aircraft database.</p>
-        
+
         <div class="model-stage">
             <!-- Dynamically pick the first aircraft as the hero model -->
             <% const heroModel = aircraft.find(a => a.aircraft_id === 2) || aircraft[0]; %>
-            <model-viewer 
+            <model-viewer
                 id="heroModelViewer"
-                src="<%= heroModel.model_path %>" 
-                alt="Dynamic aircraft 3D model" 
-                auto-rotate 
+                src="<%= heroModel.model_path %>"
+                alt="Dynamic aircraft 3D model"
+                auto-rotate
                 camera-orbit="75deg 85deg auto"
-                shadow-intensity="1.8" 
-                ar 
-                ar-modes="webxr scene-viewer quick-look" 
+                shadow-intensity="1.8"
+                ar
+                ar-modes="webxr scene-viewer quick-look"
                 camera-target="0m 0m 0m"
-                field-of-view="40deg" 
-                touch-action="pan-y" 
+                field-of-view="40deg"
+                touch-action="pan-y"
                 exposure="1.2"
                 class="model-viewer-hero">
                 <div slot="progress-bar" class="progress-bar hide"></div>
@@ -94,8 +94,8 @@
     <!-- Aircraft Cards Grid -->
     <div class="row g-4" id="aircraftCardsGrid">
         <% aircraft.forEach(item => { %>
-            <div class="col-md-6 col-lg-4 aircraft-card-wrapper card-animate" 
-                 data-name="<%= item.aircraft_name %>" 
+            <div class="col-md-6 col-lg-4 aircraft-card-wrapper card-animate"
+                 data-name="<%= item.aircraft_name %>"
                  data-model="<%= item.aircraft_model %>"
                  data-type="<%= item.type_name %>">
                 <div class="aircraft-card-modern p-4 d-flex flex-column h-100">
@@ -103,10 +103,10 @@
                         <span class="card-badge-modern"><i class="bi bi-tag-fill me-1"></i> <%= item.type_name %></span>
                         <span class="card-badge-modern country-chip"><i class="bi bi-geo-alt-fill me-1"></i> <%= item.country_name %></span>
                     </div>
-                    
+
                     <div class="aircraft-name-modern"><%= item.aircraft_name %></div>
                     <div class="manufacturer-modern"><%= item.aircraft_model %></div>
-                    
+
                     <div class="specs-grid-modern mt-2">
                         <div class="spec-cell">
                             <div class="spec-label-sm"><i class="bi bi-speedometer2"></i> MAX SPEED</div>
@@ -117,7 +117,7 @@
                             <div class="spec-value-lg"><%= item.aircraft_range %> <span style="font-size:0.7rem;">km</span></div>
                         </div>
                     </div>
-                    
+
                     <a href="/viewer/<%= item.aircraft_id %>" class="btn-explore-modern mt-auto text-decoration-none">
                         <span>Inspect Platform</span> <i class="bi bi-arrow-right-circle"></i>
                     </a>

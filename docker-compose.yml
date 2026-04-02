@@ -10,7 +10,7 @@ services:
 
     # Port alignment for the application (runs on 8001)
     ports:
-      - "8001:8001"
+      - '8001:8001'
 
     # Persist the database across restarts/rebuilds
     volumes:
@@ -28,11 +28,11 @@ services:
 
     # Traefik labels for automatic routing and SSL
     labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.globalwings.rule=Host(`globalwings.amritsharma.dev`)"
-      - "traefik.http.routers.globalwings.entrypoints=websecure"
-      - "traefik.http.routers.globalwings.tls.certresolver=letsencrypt"
-      - "traefik.http.services.globalwings.loadbalancer.server.port=8001"
+      - 'traefik.enable=true'
+      - 'traefik.http.routers.globalwings.rule=Host(`globalwings.amritsharma.dev`)'
+      - 'traefik.http.routers.globalwings.entrypoints=websecure'
+      - 'traefik.http.routers.globalwings.tls.certresolver=letsencrypt'
+      - 'traefik.http.services.globalwings.loadbalancer.server.port=8001'
 
     # Production resource constraints and stability
     deploy:
@@ -46,10 +46,10 @@ services:
 
     # Prevent disk overfill with large logs
     logging:
-      driver: "json-file"
+      driver: 'json-file'
       options:
-        max-size: "10m"
-        max-file: "3"
+        max-size: '10m'
+        max-file: '3'
 
 # Docker network shared with your Traefik instance
 networks:
