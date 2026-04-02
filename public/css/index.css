@@ -151,82 +151,100 @@ body {
   --poster-color: transparent;
 }
 
-/* search section - floating bar */
+/* search section - compact modern bar */
 .search-orbital {
-  transform: translateY(-40px);
-  margin-bottom: 0px;
+  max-width: 720px;
+  margin: 20px auto 0; /* reduce top spacing */
+  padding: 0 12px;
   position: relative;
   z-index: 25;
 }
 
 .search-glass {
-  background: rgba(12, 18, 28, 0.85);
-  backdrop-filter: blur(20px);
-  border-radius: 80px;
-  border: 1px solid rgba(80, 150, 230, 0.4);
-  padding: 0.25rem 0.25rem 0.25rem 1.5rem;
-  box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.4);
+  background: #fff;
+  border-radius: 50px;
+  padding: 6px 10px; /* 🔥 reduced from large padding */
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+  border: 1px solid #eee;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   transition: all 0.2s ease;
 }
 
 .search-glass:focus-within {
-  border-color: #3b9eff;
-  box-shadow: 0 0 18px rgba(59, 158, 255, 0.3);
+  border-color: #4f8dfd;
+  box-shadow: 0 0 0 3px rgba(79, 141, 253, 0.1);
 }
 
+/* input */
 .search-input-modern {
   background: transparent;
   border: none;
-  padding: 0.9rem 0;
-  color: #fff;
-  font-weight: 500;
-  font-size: 1rem;
-  width: 100%;
   outline: none;
+  width: 100%;
+  padding: 6px 4px;
+  color: #333;
+  font-weight: 500;
+  font-size: 0.95rem; /* slightly smaller */
 }
 
 .search-input-modern::placeholder {
-  color: #8e9bb5;
+  color: #8aaed6;
   font-weight: 400;
 }
 
+/* search icon */
+.search-glass i.bi-search {
+  font-size: 1rem; /* reduce size */
+  color: #8aaed6;
+}
+
+/* search button */
 .btn-radial {
-  background: linear-gradient(105deg, #1e88e5, #0b5ea0);
+  background: #4f8dfd;
+  color: #fff;
   border: none;
-  padding: 0.6rem 1.8rem;
-  border-radius: 60px;
-  font-weight: 600;
-  color: white;
-  transition: all 0.2s ease;
-  box-shadow: 0 4px 12px rgba(0, 100, 200, 0.3);
-}
-
-.btn-radial:hover {
-  background: linear-gradient(105deg, #2c9eff, #146bb3);
-  transform: scale(1.02);
-  box-shadow: 0 8px 18px rgba(0, 130, 230, 0.4);
-}
-
-.btn-add-modern {
-  background: rgba(40, 60, 90, 0.7);
-  backdrop-filter: blur(4px);
-  border-radius: 60px;
-  width: 48px;
-  height: 48px;
+  padding: 6px 14px; /* tighter */
+  font-size: 0.9rem;
+  border-radius: 40px;
+  transition: 0.2s;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.4rem;
-  color: #c3e2ff;
-  transition: all 0.2s;
-  border: 1px solid rgba(70, 140, 210, 0.5);
+}
+
+.btn-radial:hover {
+  background: #3a78e0;
+  transform: scale(1.02);
+}
+
+/* + button */
+.btn-add-modern {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f1f5f9;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  transition: 0.2s;
+  border: none;
   margin-left: 8px;
+  text-decoration: none;
+}
+
+.btn-add-modern i {
+  font-size: 1rem;
+  color: #4f8dfd;
 }
 
 .btn-add-modern:hover {
-  background: #1f6392;
-  color: white;
-  border-color: #80bcff;
+  background: #4f8dfd;
+}
+
+.btn-add-modern:hover i {
+  color: #fff;
 }
 
 /* fleet section */

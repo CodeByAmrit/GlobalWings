@@ -120,10 +120,10 @@ app.get('/logs', (req, res) => {
 });
 
 // Start the server
-app.listen(port, '0.0.0.0', (err) => {
+app.listen(port, (err) => {
   if (err) {
     console.error('Failed to start the server:', err);
   } else {
-    console.log(`Server is running on http://0.0.0.0:${port}`);
+    console.log(`Server is running on http://localhost:${port}`);
   }
 });

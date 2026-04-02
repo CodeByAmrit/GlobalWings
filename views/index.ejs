@@ -64,14 +64,16 @@
 <div class="container" style="margin-top: -20px;">
     <!-- Floating search bar -->
     <div class="search-orbital">
-        <div class="search-glass d-flex align-items-center justify-content-between">
+        <div class="search-glass">
             <div class="d-flex align-items-center w-100">
-                <i class="bi bi-search me-2" style="color: #6c9fd1; font-size: 1.3rem;"></i>
-                <input type="text" id="searchInput" class="search-input-modern" placeholder="Search by model, name, or manufacturer... e.g., 'Boeing', 'Jet', '787'">
+                <i class="bi bi-search"></i>
+                <input type="text" id="searchInput" class="search-input-modern" placeholder="Search models, nations, or types...">
             </div>
-            <div class="d-flex">
-                <button id="searchBtn" class="btn-radial" style="border-radius: 60px;"><i class="bi bi-arrow-right-short me-1"></i> Search</button>
-                <a href="/add.html" class="btn-add-modern ms-2" title="Add new aircraft">
+            <div class="d-flex align-items-center">
+                <button id="searchBtn" class="btn-radial">
+                    <i class="bi bi-arrow-right-short" style="font-size: 1.6rem;"></i>
+                </button>
+                <a href="/add.html" class="btn-add-modern" title="Add new aircraft">
                     <i class="bi bi-plus-lg"></i>
                 </a>
             </div>
